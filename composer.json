@@ -1,0 +1,10 @@
+{
+    "name": "hirezone/hirezone",
+    "description": "Portal de vagas simples",
+    "authors": [
+        {
+            "name": "vitortrindade"
+        }
+    ],
+    "require": {}
+}

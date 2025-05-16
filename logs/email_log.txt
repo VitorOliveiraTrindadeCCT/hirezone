@@ -1,0 +1,1 @@
+[2025-05-16 17:44:54] TO: test@example.com | FROM: no-reply@hirezone.local | SUBJECT: Test email (simulated) | MESSAGE: This is a simulated test email from HireZone using a fake local sender.
