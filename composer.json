@@ -1,10 +1,13 @@
 {
-    "name": "hirezone/hirezone",
-    "description": "Portal de vagas simples",
-    "authors": [
-        {
-            "name": "vitortrindade"
-        }
-    ],
-    "require": {}
+  "name": "vitortrindade/hirezone",
+  "description": "A simple academic job portal system developed in PHP and MySQL.",
+  "type": "project",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Vitor Trindade",
+      "email": "2024336@student.cct.ie"
+    }
+  ],
+  "require": {}
 }
