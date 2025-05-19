@@ -3,11 +3,13 @@ session_start();
 
 // Gerar captcha dinâmico se ainda não estiver definido
 if (!isset($_SESSION['captcha_result'])) {
+    if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     $a = rand(1, 9);
     $b = rand(1, 9);
-    $op = rand(0, 1) ? '+' : '-';
-    $_SESSION['captcha_question'] = "$a $op $b";
-    $_SESSION['captcha_result'] = eval("return $a $op $b;");
+    $op = '+';
+    $_SESSION['captcha_question'] = "$a + $b";
+    $_SESSION['captcha_result'] = $a + $b;
+}
 }
 
 // Processar registro
@@ -32,9 +34,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $captcha = trim($_POST['captcha']);
 
     if (!isset($_SESSION['captcha_result']) || $captcha != $_SESSION['captcha_result']) {
-        $_SESSION['error'] = "❌ Captcha incorrect.";
+        $_SESSION['error'] = " Captcha incorrect.";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $_SESSION['error'] = "❌ Invalid email address.";
+        $_SESSION['error'] = " Invalid email address.";
     } else {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
@@ -42,12 +44,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $stmt->bind_param("ssss", $name, $email, $hashedPassword, $type);
 
         if ($stmt->execute()) {
-            $_SESSION['success'] = "✅ Account created successfully! You can now log in.";
+            $_SESSION['success'] = " Account created successfully! You can now log in.";
             unset($_SESSION['captcha_result'], $_SESSION['captcha_question']);
             header("Location: login.php");
             exit();
         } else {
-            $_SESSION['error'] = "❌ Registration failed: " . $stmt->error;
+            $_SESSION['error'] = " Registration failed: " . $stmt->error;
         }
 
         $stmt->close();

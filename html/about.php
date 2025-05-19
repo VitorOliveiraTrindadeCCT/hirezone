@@ -11,7 +11,7 @@
 
         <p><strong>Location:</strong> HireZone Ltd., 123 Innovation Street, Dublin, Ireland</p>
     </section>
-<p>If you have any questions or need help, feel free to <a href="Support.php">contact our support team</a>.</p>
+<p>If you have any questions or need help, feel free to <a href="support.php">contact our support team</a>.</p>
 
     <section class="about-image">
         <img src="../images/dublin-map.png" alt="Fictional location map" class="map-img">
