@@ -7,6 +7,7 @@
         <?php elseif (isset($_SESSION['user_id']) && $_SESSION['user_type'] === 'company'): ?>
             <li><a href="dashboard-company.php">My Job Postings</a></li>
             <li><a href="create-job.php">Create Job</a></li>
+            <li><a href="view-applications.php">View Applications</a></li>
         <?php endif; ?>
   
         <li><a href="index.php">Home</a></li>

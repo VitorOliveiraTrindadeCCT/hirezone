@@ -1,0 +1,30 @@
+@startuml
+
+actor Candidate
+actor Company
+actor Admin
+
+usecase "Register" as UC1
+usecase "Login" as UC2
+usecase "Apply for Job" as UC3
+usecase "Post Job" as UC4
+usecase "Edit Job" as UC5
+usecase "Delete Job" as UC6
+usecase "Manage Users" as UC7
+usecase "Manage Jobs" as UC8
+
+Candidate --> UC1
+Candidate --> UC2
+Candidate --> UC3
+
+Company --> UC1
+Company --> UC2
+Company --> UC4
+Company --> UC5
+Company --> UC6
+
+Admin --> UC2
+Admin --> UC7
+Admin --> UC8
+
+@enduml

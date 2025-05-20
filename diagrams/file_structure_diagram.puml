@@ -1,0 +1,58 @@
+@startuml
+
+package "HireZone" {
+  folder "config" {
+    file "database_connection.php"
+  }
+
+  folder "css" {
+    file "style.css"
+  }
+
+  folder "diagrams" {
+    file "class_diagram.puml"
+    file "use_case_diagram.puml"
+  }
+
+  folder "html" {
+    file "about.php"
+    file "admin.php"
+    file "apply.php"
+    file "create-job.php"
+    file "dashboard-candidate.php"
+    file "dashboard-company.php"
+    file "delete-job.php"
+    file "edit-job.php"
+    file "footer.php"
+    file "header.php"
+    file "index.php"
+    file "job-details.php"
+    file "jobDetails.php"
+    file "login.php"
+    file "logout.php"
+    file "navbar.php"
+    file "opportunities.php"
+    file "register.php"
+    file "send-mail-simulated.php"
+    file "support.php"
+  }
+
+  folder "images" {
+    file "dublin-map.png"
+    file "logo - Copy.png"
+    file "logo.png"
+    file "videorh.mp4"
+  }
+
+  folder "tests" {
+    file "test-connection.php"
+    file "test-users.php"
+  }
+
+  file "composer.json"
+  file "favicon.ico"
+  file "hash.php"
+  file "README.md"
+}
+
+@enduml

@@ -1,0 +1,43 @@
+@startuml
+
+class User {
+  +id: int
+  +name: string
+  +email: string
+  +password: string
+  +register(): void
+  +login(): void
+}
+
+class Job {
+  +id: int
+  +title: string
+  +description: string
+  +company: string
+  +location: string
+  +apply(): void
+}
+
+class Candidate extends User {
+  +resume: string
+  +applyToJob(job: Job): void
+}
+
+class Company extends User {
+  +postJob(job: Job): void
+  +editJob(job: Job): void
+  +deleteJob(job: Job): void
+}
+
+class Admin extends User {
+  +manageUsers(): void
+  +manageJobs(): void
+}
+
+User <|-- Candidate
+User <|-- Company
+User <|-- Admin
+Job "1" -- "*" Candidate : applied by
+Job "*" -- "1" Company : posted by
+
+@enduml
