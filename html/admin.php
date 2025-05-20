@@ -63,7 +63,7 @@ include 'navbar.php';
         <div class="alert alert-error"><?= $_SESSION['error']; unset($_SESSION['error']); ?></div>
     <?php endif; ?>
 
-    <table style="width:100%; border-collapse: collapse;">
+    <table class="table">
         <thead>
             <tr style="background-color: #eee;">
                 <th>ID</th>
@@ -83,17 +83,19 @@ include 'navbar.php';
                 <td><?= $user['type'] ?></td>
                 <td><?= $user['status'] == 1 ? 'Active' : 'Blocked' ?></td>
                 <td>
-                    <?php if ($user['id'] !== $_SESSION['user_id']): ?>
-                        <?php if ($user['status'] == 1): ?>
-                            <a class="btn" href="admin.php?action=block&id=<?= $user['id'] ?>">Block</a>
-                        <?php else: ?>
-                            <a class="btn" href="admin.php?action=activate&id=<?= $user['id'] ?>">Activate</a>
-                        <?php endif; ?>
-                        <a class="btn" href="admin.php?action=delete&id=<?= $user['id'] ?>" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
-                    <?php else: ?>
-                        <em>Self</em>
-                    <?php endif; ?>
-                </td>
+  <?php if ($user['id'] !== $_SESSION['user_id']): ?>
+    <div class="table-actions">
+      <?php if ($user['status'] == 1): ?>
+        <a class="btn" href="admin.php?action=block&id=<?= $user['id'] ?>">Block</a>
+      <?php else: ?>
+        <a class="btn" href="admin.php?action=activate&id=<?= $user['id'] ?>">Activate</a>
+      <?php endif; ?>
+      <a class="btn" href="admin.php?action=delete&id=<?= $user['id'] ?>" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
+    </div>
+  <?php else: ?>
+    <em>Self</em>
+  <?php endif; ?>
+</td>
             </tr>
         <?php endwhile; ?>
         </tbody>

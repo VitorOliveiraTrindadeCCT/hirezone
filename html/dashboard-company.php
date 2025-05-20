@@ -19,13 +19,34 @@ if ($conn->connect_error) {
 
 $company_id = $_SESSION['user_id'];
 
-$sql = "SELECT id, title, location, contract_type, created_at
-        FROM jobs
-        WHERE created_by = ?
-        ORDER BY created_at DESC";
+// Filtros
+$search = $_GET['search'] ?? '';
+$location = $_GET['location'] ?? '';
 
+$sql = "SELECT id, title, location, contract_type, created_at FROM jobs WHERE created_by = ?";
+$params = [$company_id];
+$types = 'i';
+
+if (!empty($search)) {
+    $sql .= " AND (title LIKE ? OR description LIKE ?)";
+    $params[] = "%{$search}%";
+    $params[] = "%{$search}%";
+    $types .= 'ss';
+}
+
+if (!empty($location)) {
+    $sql .= " AND location = ?";
+    $params[] = $location;
+    $types .= 's';
+}
+
+$sql .= " ORDER BY created_at DESC";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $company_id);
+
+if (!empty($params)) {
+    $stmt->bind_param($types, ...$params);
+}
+
 $stmt->execute();
 $result = $stmt->get_result();
 
@@ -33,27 +54,40 @@ include 'header.php';
 include 'navbar.php';
 ?>
 
-<main class="form-page">
-    <h1>My Job Postings</h1>
+<main class="job-listing">
+    <h1 style="text-align: center;">My Job Postings</h1>
 
-    <?php if ($result->num_rows > 0): ?>
-        <div class="card-container">
-        <?php while ($job = $result->fetch_assoc()): ?>
-            <div class="job-card">
-                <h2><?= htmlspecialchars($job['title']) ?></h2>
-                <p><strong>Location:</strong> <?= htmlspecialchars($job['location']) ?></p>
-                <p><strong>Contract:</strong> <?= htmlspecialchars($job['contract_type']) ?></p>
-                <p><strong>Posted on:</strong> <?= date("F j, Y", strtotime($job['created_at'])) ?></p>
-                <div style="display:flex; gap:10px;">
-                    <a class="btn" href="edit-job.php?id=<?= $job['id'] ?>">Edit</a>
-                    <a class="btn" href="delete-job.php?id=<?= $job['id'] ?>" onclick="return confirm('Are you sure you want to delete this job?');">Delete</a>
+    <form method="GET" class="filter-form">
+        <input type="text" name="search" placeholder="Search by keyword" value="<?= htmlspecialchars($search) ?>">
+        <select name="location">
+            <option value="">All Locations</option>
+            <option value="Dublin" <?= $location == 'Dublin' ? 'selected' : '' ?>>Dublin</option>
+            <option value="Remote" <?= $location == 'Remote' ? 'selected' : '' ?>>Remote</option>
+            <option value="Cork" <?= $location == 'Cork' ? 'selected' : '' ?>>Cork</option>
+            <option value="Limerick" <?= $location == 'Limerick' ? 'selected' : '' ?>>Limerick</option>
+            <option value="Galway" <?= $location == 'Galway' ? 'selected' : '' ?>>Galway</option>
+        </select>
+        <button type="submit">Filter</button>
+    </form>
+
+    <div class="card-container">
+        <?php if ($result->num_rows > 0): ?>
+            <?php while ($job = $result->fetch_assoc()): ?>
+                <div class="job-card">
+                    <h2><?= htmlspecialchars($job['title']) ?></h2>
+                    <p><strong>Location:</strong> <?= htmlspecialchars($job['location']) ?></p>
+                    <p><strong>Contract:</strong> <?= htmlspecialchars($job['contract_type']) ?></p>
+                    <p><strong>Posted on:</strong> <?= date("F j, Y", strtotime($job['created_at'])) ?></p>
+                    <div style="display:flex; gap:10px;">
+                        <a class="btn" href="edit-job.php?id=<?= $job['id'] ?>">Edit</a>
+                        <a class="btn" href="delete-job.php?id=<?= $job['id'] ?>" onclick="return confirm('Are you sure you want to delete this job?');">Delete</a>
+                    </div>
                 </div>
-            </div>
-        <?php endwhile; ?>
-        </div>
-    <?php else: ?>
-        <p>You have not posted any jobs yet.</p>
-    <?php endif; ?>
+            <?php endwhile; ?>
+        <?php else: ?>
+            <p>No jobs found for the selected criteria.</p>
+        <?php endif; ?>
+    </div>
 </main>
 
 <?php include 'footer.php'; ?>

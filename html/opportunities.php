@@ -49,7 +49,7 @@ include 'navbar.php';
 ?>
 
 <main class="job-listing">
-    <h1>Available Job Opportunities</h1>
+    <h1 style="text-align: center;">Available Job Opportunities</h1>
 
     <form method="GET" class="filter-form">
 

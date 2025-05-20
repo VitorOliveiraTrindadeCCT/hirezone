@@ -477,3 +477,83 @@ main {
   gap: 20px;
   padding: 20px 0;
 }
+
+/* Support Page Styles */
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+.form-control {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 16px;
+}
+.btn-primary {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+.alert {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+/* User Management Table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  margin: 20px 0; /* Remove horizontal centering */
+  width: 80%; /* Keep width adjustment */
+}
+
+.table th, .table td {
+  padding: 15px; /* Increased padding for better spacing */
+  text-align: left;
+  border-bottom: 1px solid #0077B5;
+}
+
+.table th {
+  background-color: #2f87eb;
+}
+
+.table-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.table-actions .btn {
+  padding: 5px 10px;
+  font-size: 0.9rem;
+}
