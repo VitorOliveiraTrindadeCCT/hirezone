@@ -1,6 +1,8 @@
 <?php
-// Starts the session
-session_start();
+// Verifica se a sessão já não foi iniciada antes de chamar session_start()
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Sets the inactivity timeout (in seconds)
 $tempoLimite = 60;
