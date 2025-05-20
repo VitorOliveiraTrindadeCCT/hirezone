@@ -1,10 +1,12 @@
 <?php
 session_start();
+// Check if the user is logged in and is a company
 if (!isset($_SESSION['user_id']) || $_SESSION['user_type'] !== 'company') {
     header("Location: login.php");
     exit();
 }
 
+// Check if the job ID is provided
 if (!isset($_GET['id'])) {
     die("Job ID not provided.");
 }

@@ -17,7 +17,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Ações: bloquear, ativar, deletar
+// Actions: block, activate, delete
 if (isset($_GET['action']) && isset($_GET['id']) && is_numeric($_GET['id'])) {
     $user_id = intval($_GET['id']);
     $action = $_GET['action'];
@@ -45,7 +45,7 @@ if (isset($_GET['action']) && isset($_GET['id']) && is_numeric($_GET['id'])) {
     exit();
 }
 
-// Listar todos os usuários
+// List all users
 $result = $conn->query("SELECT id, name, email, type, status FROM users ORDER BY id ASC");
 
 include 'header.php';

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Gerar captcha apenas se NÃO for um POST
+// Generate captcha only if it is NOT a POST request
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     $a = rand(1, 9);
     $b = rand(1, 9);

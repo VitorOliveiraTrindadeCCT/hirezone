@@ -8,11 +8,11 @@ $conn = new mysqli(
     $config['db']['name']
 );
 
-// Teste de conexão
+// Connection test
 if ($conn->connect_error) {
-    die("Erro na conexão: " . $conn->connect_error);
+    die("Connection error: " . $conn->connect_error);
 }
 
-echo "Conexão com o banco de dados funcionando! 🎉";
+echo "Database connection working! 🎉";
 
 $conn->close();

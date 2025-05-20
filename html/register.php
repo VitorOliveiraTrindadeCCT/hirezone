@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Gerar captcha dinâmico se ainda não estiver definido
+// Generate dynamic captcha if not already defined
 if (!isset($_SESSION['captcha_result'])) {
     if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     $a = rand(1, 9);
@@ -12,7 +12,7 @@ if (!isset($_SESSION['captcha_result'])) {
 }
 }
 
-// Processar registro
+// Process registration
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $config = require '../config/database_connection.php';
 

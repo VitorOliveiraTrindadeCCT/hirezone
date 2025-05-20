@@ -15,6 +15,7 @@ if ($conn->connect_error) {
 $result = $conn->query("SELECT COUNT(*) AS total FROM users");
 $row = $result->fetch_assoc();
 
+// Verifies the connection to the 'users' table and displays the total number of users.
 echo " Tabela 'users' conectada. Total de usuários: " . $row['total'];
 
 $conn->close();

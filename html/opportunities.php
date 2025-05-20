@@ -13,7 +13,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Filtros
+// Filters
 $search = $_GET['search'] ?? '';
 $location = $_GET['location'] ?? '';
 

@@ -19,7 +19,7 @@ if ($conn->connect_error) {
 
 $company_id = $_SESSION['user_id'];
 
-// Filtros
+// Filters
 $search = $_GET['search'] ?? '';
 $location = $_GET['location'] ?? '';
 
